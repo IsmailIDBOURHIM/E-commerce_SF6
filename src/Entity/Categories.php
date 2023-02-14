@@ -20,6 +20,9 @@ class Categories
 
     #[ORM\Column(length: 100)]
     private ?string $name = null;
+    
+    #[ORM\Column]
+    private ?int $categoryOrder = null;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
@@ -51,6 +54,18 @@ class Categories
     {
         $this->name = $name;
 
+        return $this;
+    }
+
+    public function getCategoryOrder(): ?int
+    {
+        return $this->categoryOrder;
+    }
+    
+    public function setCategoryOrder(int $categoryOrder): self
+    {
+        $this->categoryOrder = $categoryOrder;
+        
         return $this;
     }
 
