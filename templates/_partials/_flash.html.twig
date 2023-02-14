@@ -1,0 +1,18 @@
+{% for label, messages in app.flashes %}
+	{% for message in messages %}
+		<div class="alert alert-{{ label }} alert-dismissible" role="alert">
+			<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">×</button>
+			<h5>
+				{% if label == "warning" %}
+					<i class="icon fas fa-exclamation-triangle"></i>
+				{% elseif label == "danger" %}
+					<i class="icon fas fa-ban"></i>
+				{% elseif label == "success" %}
+					<i class="icon fas fa-check"></i>
+				{% endif %}
+				Alert!
+            </h5>
+			{{ message|raw }}
+		</div>
+	{% endfor %}
+{% endfor %}
