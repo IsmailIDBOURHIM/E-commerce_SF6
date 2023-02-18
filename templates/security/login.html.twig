@@ -2,12 +2,6 @@
 
 {% block title %}Connexion{% endblock %}
 
-{% block stylesheets %}
-.logout {
-    text-decoration : none;
-}
-{% endblock %}
-
 {% block body %}
 <form method="post">
     {% if error %}
@@ -49,5 +43,6 @@
         Connecter
     </button>
     <a href="{{ path('app_register') }}" class="btn btn-secondary">M'inscrire</a>
+    <a href="{{ path('forgotten_password') }}" class="btn btn-secondary">Mot de passe oublié</a>
 </form>
 {% endblock %}
