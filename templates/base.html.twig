@@ -23,22 +23,21 @@
 		{% block javascripts %}{% endblock %}
 	</head>
 	<body>
-		<div
-			class="container">
+		<div class="container">
 			{# NavBar #}
 			{% include "_partials/_nav.html.twig" %}
 			{# Activation compte  #}
 			{% if app.user and app.user.isVerified == false %}
 				<div class="alert alert-warning alert-dismissible" role="alert">
-          <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">×</button>
+					<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">×</button>
 					<h5>
 						<i class="icon fas fa-exclamation-triangle"></i>
 						Alert!</h5>
-					Vous compte n'est pas activé, 
-          <a href="{{ path('resend_verif') }}">renvoyer le lien d'activation</a>
+					Vous compte n'est pas activé,
+					<a href="{{ path('resend_verif') }}">renvoyer le lien d'activation</a>
 				</div>
 			{% endif %}
-      {% include "_partials/_flash.html.twig" %}
+			{% include "_partials/_flash.html.twig" %}
 			{# Body #}
 			{% block body %}{% endblock %}
 			{# Footer #}

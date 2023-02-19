@@ -12,22 +12,35 @@
 				<h1>List des produits de la catégorie
 					{{ category.name }}</h1>
 			</div>
-			<div class="row row-cols-1 row-cols-md-3 g-4">
-				{% for product in products %}
-					<div class="col">
-						<article class="card h-100">
-							{# <img src="..." class="card-img-top" alt="..."> #}
-							<div class="card-body">
-								<h5>{{ product.name }}</h5>
-								<p class="card-text">{{ product.description }}</p>
-							</div>
-							<div class="card-footer">
-								<a href="#" class="btn btn-primary">Voir les détails</a>
-							  </div>
-						</article>
-					</div>
-				{% endfor %}
-			</div>
+			{% if products %}
+				<div class="row row-cols-1 row-cols-md-3 g-4">
+					{% for product in products.data %}
+						<div class="col">
+							<article
+								class="card h-100">
+								{# <img src="..." class="card-img-top" alt="..."> #}
+								<div class="card-body">
+									<h5>{{ product.name }}</h5>
+									<p class="card-text">{{ product.description }}</p>
+								</div>
+								<div class="card-footer">
+									<a href="{{ path('products_details', {"slug": product.slug}) }}" class="btn btn-primary">Voir les détails</a>
+								</div>
+							</article>
+						</div>
+					{% endfor %}
+				</div>
+				{% set path = 'categories_list' %}
+				{% set slug = category.slug %}
+				{% set nbrOfPages = products.nbrOfPages %}
+				{% set currentPage = products.currentPage %}
+				<div class="mt-4">
+					{% include "_partials/_pagination.html.twig" %}
+				</div>
+			{% else %}
+				<h5 class="bg-info text-center mt-4 p-2">Cette catégorie ne contient pas encore de produits</h5>
+			{% endif %}
+
 		</section>
 	</main>
 {% endblock %}
